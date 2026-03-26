@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Multo - Cup of Joe</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <a href="home.html" class="logo">
+        <h2>CCS MUSIC</h2>
+    </a>
+
+    <div class="search-container">
+        <input type="text" placeholder="Search songs, albums, artists">
+        <button>🔍</button>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main">
+
+    <!-- LEFT SIDEBAR -->
+    <div class="outer-left">
+        <h3>Up Next</h3>
+
+        <div class="song-info">
+            <a href="song1.html"><img src="multo-cover.jfif" class="cover"></a>
+            <div>
+                <p>Multo</p>
+                <p class="artist">Cup of Joe</p>
+            </div>
+        </div>
+
+        <div class="song-info">
+            <a href="song2.html"><img src="Aphrodite-cover.jfif" class="cover"></a>
+            <div>
+                <p>Aphrodite</p>
+                <p class="artist">The Ridleys</p>
+            </div>
+        </div>
+        <div class="song-info active">
+              <a href="song3.html"><img src="LockedOutOfHeaven-Cover.jpg" class="cover"></a>
+            <div>
+                <p>Locked Out of Heaven</p>
+                <p class="artist">Bruno Mars</p>
+            </div>
+        </div>
+        <div class="song-info">
+              <a href="song4.html"><img src="ikot-cover.jfif" class="cover"></a>
+            <div>
+                <p>Ikot</p>
+                <p class="artist">Over October</p>
+            </div>
+        </div>
+        <div class="song-info">
+              <a href="song5.html"><img src="mundo-cover.jfif" class="cover"></a>
+            <div>
+                <p>Mundo</p>
+                <p class="artist">IV of Spades</p>
+            </div>
+        </div>
+        <div class="song-info">
+              <a href="song6.html"><img src="favoriteflower-cover.png" class="cover"></a>
+            <div>
+                <p>Favourite Flower</p>
+                <p class="artist">jasontheween</p>
+            </div>
+        </div>
+        <div class="song-info">
+              <a href="song7.html"><img src="MiseryBusiness-cover.jpg" class="cover"></a>
+            <div>
+                <p>Misery Business</p>
+                <p class="artist">Paramore</p>
+            </div>
+        </div>
+        <div class="song-info">
+              <a href="song8.html"><img src="TekIt-cover.jfif" class="cover"></a>
+            <div>
+                <p>Tek it</p>
+                <p class="artist">Cafuné</p>
+            </div>
+        </div>
+        <div class="song-info">
+              <a href="song9.html"><img src="Me-cover.jpg" class="cover"></a>
+            <div>
+                <p>My Uncompiled Song (Foreshadowing)</p>
+                <p class="artist">Me</p>
+            </div>
+        </div>
+
+        <!-- Add the rest if you want -->
+
+    </div>
+
+    <!-- CENTER -->
+    <div class="center">
+        <div class="inner-container">
+
+            <div class="inner-left">
+                <img src="LockedOutOfHeaven-Cover.jpg">
+            </div>
+
+            <div class="inner-right">
+                <p>Oh ang langit ay nandito pala sa lupa</p>
+                <p>At ang impyerno ay nasa isipan ko at pinalimot ng iyong ganda</p>
+                <p>Umaawit ang mga Anghel</p>
+                <p>Umaawit ang mga Anghel</p>
+                <br>
+                <p>Nagdiriwang sila ng makasama kita</p>
+                <p>Huwag ka sanang mawawala</p>
+                <br>
+                <p>Mamatay akong nakangiti</p>
+                <p>Kapag ikaw ang nasa aking tabi</p>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- PLAYER -->
+<div class="player">
+
+    <div class="song-info">
+        <img src="LockedOutOfHeaven-Cover.jpg" class="cover">
+        <div>
+            <p><strong>Locked Out of Heaven</strong></p>
+            <p>Bruno Mars</p>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="prevSong()">⏮</button>
+        <button onclick="playPause()" id="playBtn">▶</button>
+        <button onclick="nextSong()">⏭</button>
+        <input type="range" id="progress" value="0">
+    </div>
+
+    <div class="volume">
+        🔊
+        <input type="range" id="volume" min="0" max="1" step="0.1" value="1">
+    </div>
+
+</div>
+
+<!-- AUDIO -->
+<audio id="audio" src="Locked out of Heaven.mp3" autoplay></audio>
+
+<!-- SCRIPT -->
+<script>
+const audio = document.getElementById("audio");
+const playBtn = document.getElementById("playBtn");
+const progress = document.getElementById("progress");
+const volume = document.getElementById("volume");
+
+function playPause() {
+    if (audio.paused) {
+        audio.play();
+        playBtn.textContent = "⏸";
+    } else {
+        audio.pause();
+        playBtn.textContent = "▶";
+    }
+}
+
+audio.addEventListener("timeupdate", function() {
+    if (audio.duration) {
+        progress.value = (audio.currentTime / audio.duration) * 100;
+    }
+});
+
+progress.addEventListener("input", function() {
+    if (audio.duration) {
+        audio.currentTime = (progress.value / 100) * audio.duration;
+    }
+});
+
+volume.addEventListener("input", function() {
+    audio.volume = volume.value;
+});
+
+audio.addEventListener("play", function() {
+    playBtn.textContent = "⏸";
+});
+
+audio.addEventListener("pause", function() {
+    playBtn.textContent = "▶";
+});
+
+audio.addEventListener("ended", function() {
+    nextSong();
+});
+
+function getCurrentSongNumber() {
+    const file = window.location.pathname.split("/").pop();
+    return parseInt(file.replace("song", "").replace(".html", ""));
+}
+
+function nextSong() {
+    let current = getCurrentSongNumber();
+    if (current < 9) {
+        window.location.href = "song" + (current + 1) + ".html";
+    } else {
+        window.location.href = "song1.html";
+    }
+}
+
+function prevSong() {
+    let current = getCurrentSongNumber();
+    if (current > 1) {
+        window.location.href = "song" + (current - 1) + ".html";
+    } else {
+        window.location.href = "song9.html";
+    }
+}
+</script>
+
+</body>
+</html>

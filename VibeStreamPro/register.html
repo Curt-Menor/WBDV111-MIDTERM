@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="style.css">
+<title>CCS Music</title>
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #0f0f0f, #1c1c1c);
+  color: white;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* LOGIN CARD */
+.login-card {
+  width: 380px;
+  padding: 45px 35px;
+  border-radius: 20px;
+  background: rgba(30, 30, 30, 0.7);
+  backdrop-filter: blur(15px);
+  border: 1px solid #2a2a2a;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+  text-align: center;
+}
+
+/* Logo Title */
+.login-card h1 {
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+/* INPUT GROUP */
+.input-group {
+  position: relative;
+  margin-bottom: 25px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 14px 12px;
+  background: transparent;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: white;
+  font-size: 14px;
+  outline: none;
+}
+
+/* Floating label effect */
+.input-group label {
+  position: absolute;
+  left: 12px;
+  top: 14px;
+  font-size: 14px;
+  color: #aaa;
+  pointer-events: none;
+  transition: 0.2s;
+}
+
+.input-group input:focus {
+  border-color: #1db954;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: -8px;
+  left: 10px;
+  font-size: 11px;
+  background: #1c1c1c;
+  padding: 0 6px;
+  color: #1db954;
+}
+
+/* BUTTON */
+.login-btn {
+  width: 100%;
+  padding: 14px;
+  background: #1db954;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-btn:hover {
+  background: #1ed760;
+  box-shadow: 0 0 20px #1db95466;
+  transform: translateY(-2px);
+}
+
+/* FOOTER */
+.footer-links {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+.footer-links a {
+  color: #1db954;
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+   <a href="home.html" class="logo">
+        <img src="logo.png" class="logo-img">
+        <span>CCS MUSIC</span>
+    </a>
+
+
+    <div class="search-container">
+        <input type="text" placeholder="Search songs, albums, artists">
+        <button>🔍</button>
+    </div>
+
+    <div class="user-profile">
+        <a href="login.html"><img src="user.png" alt="User"></a>
+    </div>
+</div>
+
+
+<div class="main">
+
+ <div class="login-container">
+        <div class="login-card">
+            <h1>Create Account</h1>
+
+            <form>
+                <div class="input-group">
+  <input type="text" required>
+  <label>Full Name</label>
+</div>
+
+<div class="input-group">
+  <input type="email" required>
+  <label>Email Address</label>
+</div>
+
+<div class="input-group">
+  <input type="password" required>
+  <label>Password</label>
+</div>
+
+<div class="input-group">
+  <input type="password" required>
+  <label>Confirm Password</label>
+</div>
+                
+                <button type="submit" class="login-btn">Sign Up</button>
+                
+                <div class="footer-links">
+                    <span>Already have an account? 
+                        <a href="login.html">Login</a>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+</body>
+</html>

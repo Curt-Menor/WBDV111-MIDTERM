@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CCS Music</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+
+/* GLOBAL */
+* {
+    box-sizing: border-box;
+    transition: 0.2s ease;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #1a1a1a, #0f0f0f);
+    color: white;
+    padding-bottom: 100px;
+}
+
+/* HEADER */
+.header {
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    background: rgba(24, 24, 24, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid #2a2a2a;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* LOGO WITH IMAGE */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.logo-img {
+    height: 40px;
+    width: auto;
+}
+
+/* USER PROFILE (RIGHT SIDE) */
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid #2a2a2a;
+    transition: 0.3s;
+}
+
+.user-profile img:hover {
+    transform: scale(1.1);
+    border-color: #1db954;
+}
+
+.user-profile.logged-in img {
+    border-color: #1db954;
+}
+
+.logo:hover {
+    color: #1db954;
+}
+
+/* SEARCH */
+.search-container {
+    display: flex;
+    width: 400px;
+    max-width: 100%;
+    background-color: #2a2a2a;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.search-container input {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: white;
+    font-size: 14px;
+}
+
+.search-container button {
+    background-color: #333;
+    border: none;
+    color: white;
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+.search-container:focus-within {
+    background-color: #3a3a3a;
+}
+
+/* MAIN LAYOUT */
+.main {
+    display: flex;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+/* SIDEBAR */
+.outer-left {
+    width: 220px;
+    background: #1e1e1e;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    height: calc(100vh - 75px);
+}
+
+.outer-left a {
+    text-decoration: none;
+    color: white;
+    padding: 12px 15px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.outer-left a:hover {
+    background: #333;
+}
+
+.outer-left a.active {
+    background: #333;
+    font-weight: 600;
+}
+
+/* CENTER */
+.center {
+    flex: 1;
+    padding: 30px;
+}
+
+.center h1 {
+    font-size: 28px;
+    margin-top: 0;
+}
+
+.center p {
+    font-size: 14px;
+    color: #aaa;
+}
+
+/* MUSIC GRID */
+.music-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.music-card {
+    background: #1f1f1f;
+    padding: 15px;
+    border-radius: 12px;
+    position: relative;
+    cursor: pointer;
+}
+
+.music-card:hover {
+    background: #2a2a2a;
+    transform: translateY(-6px);
+}
+
+.music-card img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* PLAY BUTTON */
+.play-btn {
+    position: absolute;
+    bottom: 90px;
+    right: 25px;
+    background: #1db954;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.music-card:hover .play-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.title {
+    font-weight: 600;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.artist {
+    font-size: 12px;
+    color: #aaa;
+}
+
+/* PLAYER */
+.player {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 90px;
+    background: #181818;
+    border-top: 1px solid #2a2a2a;
+    box-shadow: 0 -5px 20px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+.controls button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.controls button:hover {
+    color: #1db954;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+
+    <!-- LEFT: Logo -->
+    <a href="home.html" class="logo">
+        <img src="logo.png" class="logo-img">
+        <span>CCS MUSIC</span>
+    </a>
+
+    <!-- CENTER: Search -->
+    <div class="search-container">
+        <input type="text" placeholder="Search songs, albums, artists">
+        <button>🔍</button>
+    </div>
+
+    <!-- RIGHT: User -->    
+    <div class="user-profile logged-in">
+        <a href="login.html">
+            <img src="user.png" alt="User">
+        </a>
+    </div>
+
+</div>
+
+<div class="main">
+
+    <!-- SIDEBAR -->
+    <div class="outer-left">
+        <a href="home.html" class="active">Home</a>
+        <a href="home.html">Explore</a>
+        <a href="song1.html">Library</a>
+    </div>
+
+    <!-- CENTER -->
+    <div class="center">
+        <h1>Listen Again</h1>
+        <p>Your recently played songs and albums</p>
+
+        <div class="music-grid">
+
+            <div class="music-card">
+                <a href="song1.html"><img src="multo-cover.jfif"></a>
+                <div class="play-btn">▶</div>
+                <div class="title">Multo</div>
+                <div class="artist">Cup of Joe</div>
+            </div>
+
+            <div class="music-card">
+                <a href="song2.html"><img src="Aphrodite-cover.jfif"></a>
+                <div class="play-btn">▶</div>
+                <div class="title">Aphrodite</div>
+                <div class="artist">The Ridleys</div>
+            </div>
+
+            <div class="music-card">
+                <a href="song3.html"><img src="LockedOutOfHeaven-Cover.jpg"></a>
+                <div class="play-btn">▶</div>
+                <div class="title">Locked Out of Heaven</div>
+                <div class="artist">Bruno Mars</div>
+            </div>
+
+            <div class="music-card">
+                <a href="song4.html"><img src="ikot-cover.jfif"></a>
+                <div class="play-btn">▶</div>
+                <div class="title">Ikot</div>
+                <div class="artist">Over October</div>
+            </div>
+
+            <div class="music-card">
+                <a href="song5.html"><img src="mundo-cover.jfif"></a>
+                <div class="play-btn">▶</div>
+                <div class="title">Mundo</div>
+                <div class="artist">IV of Spades</div>
+            </div>
+
+            <div class="music-card">
+                <a href="song6.html"><img src="favoriteflower-cover.png" alt="Cover"></a>
+                <div class="title">Favorite Flower</div>
+                <div class="artist">jasontheween</div>
+            </div>
+
+            <div class="music-card">
+                <a href="song7.html"><img src="MiseryBusiness-cover.jpg" alt="Cover"></a>
+                <div class="title">Misery Business</div>
+                <div class="artist">Paramore</div>
+            </div>
+
+            <div class="music-card">
+                <a href="song8.html"><img src="TekIt-cover.jfif" alt="Cover"></a>
+                <div class="title">Tek It</div>
+                <div class="artist">Cafuné</div>
+            </div>
+
+            <div class="music-card">
+                <a href="song9.html"><img src="Me-cover.jpg" alt="Cover"></a>
+                <div class="title">My Uncompiled Song (Foreshadowing)</div>
+                <div class="artist">Me</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- PLAYER -->
+<div class="player">
+    <div>Now Playing</div>
+    <div class="controls">
+        <button>⏮</button>
+        <button>▶</button>
+        <button>⏭</button>
+    </div>
+    <div>🔊</div>
+</div>
+
+</body>
+</html>
