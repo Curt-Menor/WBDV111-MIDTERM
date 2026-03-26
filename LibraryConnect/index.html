@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LibryConnect</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family: "Segoe UI", sans-serif;
+    background:#f4f1ea;
+}
+
+/* HEADER */
+
+header{
+    background:#5c4b3b;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+nav{
+    background:#3d3228;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+nav button{
+    background:none;
+    border:none;
+    color:white;
+    padding:15px 25px;
+    font-size:16px;
+    cursor:pointer;
+}
+
+nav button:hover{
+    background:#5c4b3b;
+}
+
+/* SECTIONS */
+
+.section{
+    display:none;
+    padding:40px;
+    max-width:1000px;
+    margin:auto;
+}
+
+.active{
+    display:block;
+}
+
+/* CARD BUTTON STYLE */
+
+.card-container{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+}
+
+.card{
+    width:200px;
+    padding:20px;
+    background:#fffdf7;
+    border:2px solid #c9bfae;
+    border-radius:6px;
+    box-shadow:4px 4px 0px #b6a98d;
+    text-align:center;
+    font-weight:bold;
+}
+
+/* SEARCH */
+
+.search-box{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.search-box input{
+    padding:10px;
+    width:250px;
+}
+
+.search-box button{
+    padding:10px 20px;
+    cursor:pointer;
+}
+
+/* TABLE */
+
+table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+th, td{
+    padding:12px;
+    border:1px solid #ccc;
+    text-align:center;
+}
+
+th{
+    background:#e6dfd1;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:600px){
+
+.card{
+    width:100%;
+}
+
+nav{
+    flex-direction:column;
+}
+
+}
+
+</style>
+
+<script>
+
+function showSection(sectionId){
+
+let sections=document.querySelectorAll(".section");
+
+sections.forEach(sec=>{
+    sec.classList.remove("active");
+});
+
+document.getElementById(sectionId).classList.add("active");
+
+}
+
+function searchBooks(){
+
+let input=document.getElementById("searchInput").value.toLowerCase();
+let books=document.querySelectorAll(".book");
+
+books.forEach(book=>{
+
+if(book.innerText.toLowerCase().includes(input))
+    book.style.display="table-row";
+else
+    book.style.display="none";
+
+});
+
+}
+
+</script>
+
+</head>
+
+
+<body>
+
+<header>
+<h1>📚 LibryConnect</h1>
+<p>Education Library Management System</p>
+</header>
+
+
+<nav>
+
+<button onclick="showSection('home')">Home</button>
+<button onclick="showSection('search')">Search Books</button>
+<button onclick="showSection('members')">Members</button>
+<button onclick="showSection('loans')">Loans</button>
+<button onclick="showSection('overdue')">Overdue</button>
+
+</nav>
+
+
+<!-- HOME -->
+
+<section id="home" class="section active">
+
+<h2 style="text-align:center;">Library Features</h2>
+
+<div class="card-container">
+
+<div class="card">🔎 Search Books</div>
+<div class="card">👥 Members</div>
+<div class="card">📖 Loans</div>
+<div class="card">⏰ Overdue Tracking</div>
+
+</div>
+
+</section>
+
+
+
+<!-- SEARCH -->
+
+<section id="search" class="section">
+
+<h2>Search Books</h2>
+
+<div class="search-box">
+<input type="text" id="searchInput" placeholder="Search for a book">
+<button onclick="searchBooks()">Search</button>
+</div>
+
+<table>
+
+<tr>
+<th>Title</th>
+<th>Author</th>
+<th>Category</th>
+</tr>
+
+<tr class="book">
+<td>Introduction to Programming</td>
+<td>John Michael Mianot</td>
+<td>Education</td>
+</tr>
+
+<tr class="book">
+<td>Web Development Basics</td>
+<td>Joset Sardinas</td>
+<td>Technology</td>
+</tr>
+
+<tr class="book">
+<td>History of Libraries</td>
+<td>Kenneth Geopano</td>
+<td>Education</td>
+</tr>
+
+</table>
+
+</section>
+
+
+
+<!-- MEMBERS -->
+
+<section id="members" class="section">
+
+<h2>Library Members</h2>
+
+<table>
+
+<tr>
+<th>Name</th>
+<th>ID</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>Juan Miguelitot</td>
+<td>311</td>
+<td>Active</td>
+</tr>
+
+<tr>
+<td>Kenneth Geopano</td>
+<td>534</td>
+<td>Active</td>
+</tr>
+
+<tr>
+<td>Junray De Andres</td>
+<td>911</td>
+<td>Sumakabilang Bansa</td>
+</tr>
+
+</table>
+
+</section>
+
+
+
+<!-- LOANS -->
+
+<section id="loans" class="section">
+
+<h2>Book Loans</h2>
+
+<table>
+
+<tr>
+<th>Member</th>
+<th>Book</th>
+<th>Return Date</th>
+</tr>
+
+<tr>
+<td>John Michael Mianot</td>
+<td>Introduction to Programming</td>
+<td>May 12</td>
+</tr>
+
+<tr>
+<td>Joset Sardinas</td>
+<td>Web Development Basics</td>
+<td>May 15</td>
+</tr>
+
+</table>
+
+</section>
+
+
+
+<!-- OVERDUE -->
+
+<section id="overdue" class="section">
+
+<h2>Overdue Books</h2>
+
+<table>
+
+<tr>
+<th>Member</th>
+<th>Book</th>
+<th>Days Late</th>
+</tr>
+
+<tr>
+<td>Mark Louie</td>
+<td>History of Libraries</td>
+<td style="color:red;">5 Days asan na boyyy</td>
+</tr>
+
+</table>
+
+</section>
+
+
+
+</body>
+</html>
