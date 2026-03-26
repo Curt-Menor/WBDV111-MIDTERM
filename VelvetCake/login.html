@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | Velvet Crust Cakes</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container centered-card">
+        <div class="logo" style="margin-bottom: 20px;">Velvet Crust</div>
+        <h2>Welcome Back</h2>
+        <div class="input-group" style="margin-bottom: 15px;">
+            <input id="email" type="email" placeholder="Email Address" style="width:100%; padding:12px; border-radius:15px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.2); color:white;">
+        </div>
+        <div class="input-group" style="margin-bottom: 25px;">
+            <input id="password" type="password" placeholder="Password" style="width:100%; padding:12px; border-radius:15px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.2); color:white;">
+        <p style="margin-top: 20px;"><a href="index.html" style="color: var(--cream); text-decoration: none;">← Back to Home</a></p>
+    </div>
+
+    <script>
+function login() {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    // Fake account (you can change this)
+    const validEmail = "admin@gmail.com";
+    const validPassword = "1234";
+
+    if(email === "" || password === "") {
+        alert("Please fill in all fields!");
+        return;
+    }
+
+    if(email === validEmail && password === validPassword) {
+        alert("Login successful 🎉");
+
+        // Save login status
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("userEmail", email);
+
+        // Redirect to home
+        window.location.href = "index.html";
+    } else {
+        alert("Invalid email or password ❌");
+    }
+}
+</script>
+
+</body>
+</html>

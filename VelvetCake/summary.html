@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Velvet Crust Cakes | Cart</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="logo">Velvet Crust</div>
+    <input type="text" class="search-bar" placeholder="Search cakes...">
+
+    <div class="nav-links">
+        <a href="index.html" class="btn-cream">Home</a>
+        <a href="shop.html" class="btn-cream">Shop</a>
+        <a href="summary.html" class="btn-cream">Cart (<span id="cart-count">0</span>)</a>
+        <a href="login.html" id="login-btn" class="btn-cream">Login</a>
+    </div>
+</nav>
+
+<!-- MODAL -->
+<div id="cart-modal" class="modal-overlay">
+    <div class="container" style="max-width: 400px; text-align: center;">
+        <h2 id="modal-title">Confirm Selection</h2>
+        <p id="modal-msg"></p>
+
+        <div id="qty-box" style="display:none; margin: 20px;">
+            <label>Quantity: </label>
+            <input type="number" id="item-qty" value="1" min="1" style="width: 60px; padding: 5px;">
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+            <button id="modal-yes" class="btn-cream" style="flex:1">Yes</button>
+            <button id="modal-no" class="btn-cream" style="flex:1; background:rgba(255,255,255,0.2); color:white;">No</button>
+        </div>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+    <section id="summary" class="page">
+        <h2>Order Summary</h2>
+
+        <!-- EMPTY MESSAGE (FIXED POSITION) -->
+        <p id="empty-msg" style="display:none; text-align:center; margin-top:20px;">
+            Your cart is empty 🛒
+        </p>
+
+        <table style="width: 100%; border-collapse: collapse; margin-top:20px;">
+            <thead style="border-bottom: 1px solid var(--glass-border);">
+                <tr>
+                    <th style="text-align:left;">Item</th>
+                    <th>Qty</th>
+                    <th>Subtotal</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items"></tbody>
+        </table>
+
+        <div style="text-align: right; margin-top: 30px;">
+            <h3>Grand Total: $<span id="total-price">0</span></h3>
+
+            <!-- CHECKOUT -->
+            <button class="btn-cream" onclick="checkout()">Checkout</button>
+        </div>
+    </section>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
