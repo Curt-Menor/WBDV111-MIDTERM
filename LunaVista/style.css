@@ -1,0 +1,204 @@
+:root {
+  --sand: #f3dfc1;
+  --sea: #116a81;
+  --sky: #0c3f57;
+  --ink: #f4fafc;
+  --glass: rgba(9, 23, 33, 0.48);
+  --line: rgba(255, 255, 255, 0.35);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Trebuchet MS", "Gill Sans", "Segoe UI", sans-serif;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+
+  background: linear-gradient(135deg, #0c3f57, #116a81);
+}
+
+.topbar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem clamp(1rem, 3vw, 3rem);
+  background: linear-gradient(rgba(2,18,30,0.8), rgba(2,18,30,0));
+  z-index: 20;
+}
+
+.brand { color: var(--sand); text-decoration: none; font-weight: 800; }
+
+.menu { list-style: none; display: flex; gap: 1rem; margin:0; padding:0; }
+
+.menu a { color: #dff2fb; text-decoration: none; font-weight:600; }
+
+.menu a:hover { color: #fff; }
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  animation: zoom 25s ease-in-out infinite alternate;
+  transition: background-image 1.5s ease-in-out;
+  overflow: hidden;
+}
+
+@keyframes zoom {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.05); }
+}
+
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(0,0,0,0.25), transparent 35%),
+              linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+  z-index:1;
+}
+
+.login-card {
+  position: relative;
+  z-index: 2;
+  max-width: 440px;
+  padding: clamp(1.2rem, 3vw, 2rem);
+  border-radius: 16px;
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.35);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 14px 38px rgba(0,0,0,0.28);
+}
+
+.login-card h1 { margin: 0; font-size: clamp(1.6rem,4.5vw,2.2rem); }
+.login-card p { margin: 0.55rem 0 1.25rem; }
+
+input, button {
+  width: 100%; padding: 0.7rem 0.85rem; border-radius:10px; border:1px solid rgba(255,255,255,0.4);
+  font: inherit;
+}
+
+input { background: rgba(255,255,255,0.12); color: #fff; }
+select, textarea {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.12);
+  color:#fff;
+  font:inherit;
+}
+
+input::placeholder { color: #d5e2e8; }
+textarea::placeholder{
+  color:#d5e2e8;
+}
+
+button {
+  margin-top:0.25rem;
+  border:0; cursor:pointer;
+  background: linear-gradient(135deg,#f0c98f,#d89f54);
+  color:#1a1b1f; font-weight:800;
+}
+
+button:hover { filter: brightness(1.05); }
+
+/* Gallery page */
+.gallery-main { max-width:1200px; margin:6rem auto 2rem; padding:0 1rem; text-align:center; }
+.gallery-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+.gallery-grid img { width:100%; height:220px; object-fit:cover; border-radius:12px; cursor:pointer; transition: transform 0.3s, box-shadow 0.3s; }
+.gallery-grid img:hover { transform: scale(1.05); box-shadow:0 10px 30px rgba(0,0,0,0.5); }
+
+/* Lightbox */
+.lightbox { display:none; position:fixed; inset:0; background: rgba(0,0,0,0.9); z-index:999; align-items:center; justify-content:center; }
+.lightbox-img { max-width:90%; max-height:80%; border-radius:12px; }
+.lightbox .close, .lightbox .prev, .lightbox .next { position:absolute; color:#fff; font-size:2rem; cursor:pointer; user-select:none; }
+.lightbox .close { top:20px; right:30px; }
+.lightbox .prev { top:50%; left:30px; transform: translateY(-50%); }
+.lightbox .next { top:50%; right:30px; transform: translateY(-50%); }
+.lightbox .caption { color:#fff; margin-top:10px; font-size:1rem; }
+
+.reservation-page {
+  background-image: url("hotel3.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Reservation layout */
+
+.reservation-layout{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:40px;
+  padding:120px 40px;
+  max-width:1200px;
+  margin:auto;
+}
+
+.carousel-card{
+  background: var(--glass);
+  padding:20px;
+  border-radius:16px;
+}
+
+.carousel img{
+  width:100%;
+  height:380px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.reservation-card{
+  background: var(--glass);
+  padding:30px;
+  border-radius:16px;
+  backdrop-filter: blur(10px);
+}
+
+.reservation-form{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.two-col{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+/* Gallery page background */
+.gallery-main {
+  max-width:1200px;
+  margin:6rem auto 2rem;
+  padding:0 1rem;
+  text-align:center;
+}
+
+body:has(.gallery-main){
+  background-image: url("backgroundgallery.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.gallery-page{
+  background-image: url("backgroundgallery.jpg");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.about-page{
+  background-image: url("backgroundabout.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
