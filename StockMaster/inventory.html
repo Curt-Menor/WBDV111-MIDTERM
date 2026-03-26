@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockMaster | Inventory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">StockMaster</div>
+    <nav class="navbar">
+      <a href="index.html">Dashboard</a>
+      <a href="retail.html">Retail</a>
+      <a href="inventory.html" class="active">Stock / Suppliers / Orders</a>
+      <a href="reports.html">Reports</a>
+    </nav>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <main class="container">
+    <section class="page-header">
+      <h1>Stock, Suppliers, and Orders</h1>
+      <p>Monitor inventory records and supplier transactions.</p>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h2>Stock List</h2>
+        <p>Check available products and item quantities.</p>
+        <button class="btn action-btn" onclick="showMessage('Stock list opened!')">Action</button>
+      </div>
+
+      <div class="card">
+        <h2>Suppliers</h2>
+        <p>View and update supplier information.</p>
+        <button class="btn action-btn" onclick="showMessage('Supplier page opened!')">Action</button>
+      </div>
+
+      <div class="card">
+        <h2>Orders</h2>
+        <p>Track incoming and outgoing item orders.</p>
+        <button class="btn action-btn" onclick="showMessage('Orders page opened!')">Action</button>
+      </div>
+    </section>
+
+    <section class="table-section">
+      <h2>Sample Inventory Table</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Category</th>
+            <th>Stock</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Steel Bolts</td>
+            <td>Hardware</td>
+            <td>120</td>
+            <td>Available</td>
+          </tr>
+          <tr>
+            <td>Safety Gloves</td>
+            <td>Safety Gear</td>
+            <td>45</td>
+            <td>Low Stock</td>
+          </tr>
+          <tr>
+            <td>Industrial Paint</td>
+            <td>Chemicals</td>
+            <td>80</td>
+            <td>Available</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

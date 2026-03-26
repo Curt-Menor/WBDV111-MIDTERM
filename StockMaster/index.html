@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockMaster | Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">StockMaster</div>
+    <nav class="navbar">
+      <a href="index.html" class="active">Dashboard</a>
+      <a href="retail.html">Retail</a>
+      <a href="inventory.html">Stock / Suppliers / Orders</a>
+      <a href="reports.html">Reports</a>
+    </nav>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Industrial Inventory Management System</h1>
+      <p>
+        Manage products, suppliers, customer orders, and reports in one clean dashboard.
+      </p>
+      <div class="hero-buttons">
+        <a href="inventory.html" class="btn action-btn">Manage Stock</a>
+        <a href="reports.html" class="btn secondary-btn">View Reports</a>
+      </div>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h2>Retail</h2>
+        <p>Handle walk-in sales, billing, and transaction records.</p>
+        <a href="retail.html" class="btn action-btn">Open Retail</a>
+      </div>
+
+      <div class="card">
+        <h2>Stock & Orders</h2>
+        <p>Track inventory levels, supplier details, and pending orders.</p>
+        <a href="inventory.html" class="btn action-btn">Open Inventory</a>
+      </div>
+
+      <div class="card">
+        <h2>Reports</h2>
+        <p>Generate sales summaries and inventory reports quickly.</p>
+        <a href="reports.html" class="btn action-btn">Open Reports</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

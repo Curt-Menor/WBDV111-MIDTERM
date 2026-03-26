@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockMaster | Reports</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">StockMaster</div>
+    <nav class="navbar">
+      <a href="index.html">Dashboard</a>
+      <a href="retail.html">Retail</a>
+      <a href="inventory.html">Stock / Suppliers / Orders</a>
+      <a href="reports.html" class="active">Reports</a>
+    </nav>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <main class="container">
+    <section class="page-header">
+      <h1>Reports</h1>
+      <p>View system summaries and printed records.</p>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h2>Sales Report</h2>
+        <p>Check sales performance and transactions.</p>
+        <button class="btn action-btn" onclick="showMessage('Sales report loaded!')">Action</button>
+      </div>
+
+      <div class="card">
+        <h2>Inventory Report</h2>
+        <p>View current stock movement and quantity summaries.</p>
+        <button class="btn action-btn" onclick="showMessage('Inventory report loaded!')">Action</button>
+      </div>
+
+      <div class="card">
+        <h2>Supplier Report</h2>
+        <p>Review supplier deliveries and order records.</p>
+        <button class="btn action-btn" onclick="showMessage('Supplier report loaded!')">Action</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

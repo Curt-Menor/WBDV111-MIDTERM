@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StockMaster | Retail</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">StockMaster</div>
+    <nav class="navbar">
+      <a href="index.html">Dashboard</a>
+      <a href="retail.html" class="active">Retail</a>
+      <a href="inventory.html">Stock / Suppliers / Orders</a>
+      <a href="reports.html">Reports</a>
+    </nav>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <main class="container">
+    <section class="page-header">
+      <h1>Retail Page</h1>
+      <p>Manage transactions and item checkout.</p>
+    </section>
+
+    <section class="cards">
+      <div class="card">
+        <h2>New Sale</h2>
+        <p>Create a new transaction for customers.</p>
+        <button class="btn action-btn" onclick="showMessage('New Sale opened!')">Action</button>
+      </div>
+
+      <div class="card">
+        <h2>Customer Receipt</h2>
+        <p>Generate and print receipts for completed sales.</p>
+        <button class="btn action-btn" onclick="showMessage('Receipt generated!')">Action</button>
+      </div>
+
+      <div class="card">
+        <h2>Daily Sales</h2>
+        <p>View the sales recorded for the current day.</p>
+        <button class="btn action-btn" onclick="showMessage('Showing daily sales!')">Action</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
