@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LedgerFlow</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{--bg:#0f172a;--card:#111827;--accent:#3b82f6;--text:#e5e7eb}
+body{margin:0;font-family:Arial;background:var(--bg);color:var(--text)}
+header{padding:15px;text-align:center;background:#020617}
+.container{padding:20px;max-width:900px;margin:auto}
+.card{background:var(--card);padding:20px;border-radius:12px;margin-bottom:20px;box-shadow:0 2px 10px rgba(0,0,0,0.4)}
+input,select{padding:10px;width:100%;margin:6px 0 12px;border-radius:6px;border:none}
+button{padding:10px;width:100%;background:var(--accent);color:white;border:none;border-radius:6px;cursor:pointer}
+.hidden{display:none}
+h2{margin-top:0}
+.small{font-size:12px;opacity:.7}
+</style>
+</head>
+<body>
+<header>
+<h1>LedgerFlow</h1>
+<p class="small">Demo with Local Storage + Dynamic 2FA</p>
+</header>
+
+<div class="container">
+
+<!-- LOGIN -->
+<div id="loginCard" class="card">
+<h2>Login / Register</h2>
+<input id="username" placeholder="Enter username">
+<input id="password" type="password" placeholder="Enter password">
+<button onclick="login()">Continue</button>
+</div>
+
+<!-- 2FA -->
+<div id="twofaCard" class="card hidden">
+<h2>2FA Verification</h2>
+<p>Your code: <b id="generatedCode"></b></p>
+<input id="code" placeholder="Enter code">
+<button onclick="verify2FA()">Verify</button>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden">
+
+<div class="card">
+<h2>Welcome, <span id="userDisplay"></span></h2>
+<button onclick="logout()">Logout</button>
+</div>
+
+<div class="card">
+<h2>Income vs Expenses</h2>
+<canvas id="financeChart"></canvas>
+</div>
+
+<div class="card">
+<h2>Add Transaction</h2>
+<input type="number" id="amount" placeholder="Amount">
+<select id="type">
+<option value="income">Income</option>
+<option value="expense">Expense</option>
+</select>
+<button onclick="addTransaction()">Add</button>
+</div>
+
+</div>
+</div>
+
+<script>
+let income = 0;
+let expenses = 0;
+let chart;
+let currentUser = "";
+let generated2FA = "";
+
+// Load saved data
+window.onload = () => {
+  const savedUser = localStorage.getItem('user');
+  if(savedUser){
+    currentUser = savedUser;
+    showDashboard();
+  }
+}
+
+function login(){
+  const user = document.getElementById('username').value;
+  const pass = document.getElementById('password').value;
+
+  if(!user || !pass){ alert('Enter something'); return; }
+
+  // Save credentials (demo only)
+  localStorage.setItem('user', user);
+  localStorage.setItem('pass', pass);
+  currentUser = user;
+
+  // Generate random 2FA
+  generated2FA = Math.floor(100000 + Math.random() * 900000).toString();
+  document.getElementById('generatedCode').innerText = generated2FA;
+
+  document.getElementById('loginCard').classList.add('hidden');
+  document.getElementById('twofaCard').classList.remove('hidden');
+}
+
+function verify2FA(){
+  const code = document.getElementById('code').value;
+
+  if(code === generated2FA){
+    document.getElementById('twofaCard').classList.add('hidden');
+    showDashboard();
+  } else {
+    alert('Wrong code');
+  }
+}
+
+function showDashboard(){
+  document.getElementById('dashboard').classList.remove('hidden');
+  document.getElementById('userDisplay').innerText = currentUser;
+
+  income = parseFloat(localStorage.getItem('income')) || 0;
+  expenses = parseFloat(localStorage.getItem('expenses')) || 0;
+
+  loadChart();
+}
+
+function logout(){
+  localStorage.clear();
+  location.reload();
+}
+
+function loadChart(){
+  const ctx = document.getElementById('financeChart').getContext('2d');
+  chart = new Chart(ctx, {
+    type: 'doughnut',
+    data: {
+      labels: ['Income','Expenses'],
+      datasets: [{ data: [income, expenses] }]
+    }
+  });
+}
+
+function addTransaction(){
+  const amount = parseFloat(document.getElementById('amount').value);
+  const type = document.getElementById('type').value;
+
+  if(!amount) return;
+
+  if(type === 'income') income += amount;
+  else expenses += amount;
+
+  localStorage.setItem('income', income);
+  localStorage.setItem('expenses', expenses);
+
+  chart.data.datasets[0].data = [income, expenses];
+  chart.update();
+}
+</script>
+
+</body>
+</html>
