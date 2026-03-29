@@ -1,0 +1,97 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus Events | Tickets</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="tickets">
+  <header class="site-header">
+    <div class="container navbar">
+      <a class="brand" href="index.html">Nexus Events</a>
+      <nav class="nav-links">
+        <a href="index.html" data-nav="home">Home</a>
+        <a href="events.html" data-nav="events">Events</a>
+        <a href="tickets.html" data-nav="tickets">Tickets</a>
+        <a href="venue.html" data-nav="venue">Venue</a>
+        <a href="contact.html" data-nav="contact">Contact</a>
+        <a href="admin-login.html" data-nav="admin">Admin</a>
+      </nav>
+      <button class="btn btn--ghost" type="button" data-party-toggle>Party Mode: OFF</button>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1 class="section-title">Tickets & Access</h1>
+
+    <!-- TICKET OPTIONS -->
+    <section style="margin-top: 2rem;">
+      <div class="panel">
+
+        <div class="ticket-row" data-ticket-row data-price="45">
+          <div><strong>Pulse Pass</strong></div>
+          <div class="qty-control">
+            <button type="button" data-qty-minus>-</button>
+            <input type="text" value="0" data-qty>
+            <button type="button" data-qty-plus>+</button>
+          </div>
+          <div>$45</div>
+        </div>
+
+        <div class="ticket-row" data-ticket-row data-price="85">
+          <div><strong>Glow Pass</strong></div>
+          <div class="qty-control">
+            <button type="button" data-qty-minus>-</button>
+            <input type="text" value="0" data-qty>
+            <button type="button" data-qty-plus>+</button>
+          </div>
+          <div>$85</div>
+        </div>
+
+        <div class="ticket-row" data-ticket-row data-price="140">
+          <div><strong>Orbit Pass</strong></div>
+          <div class="qty-control">
+            <button type="button" data-qty-minus>-</button>
+            <input type="text" value="0" data-qty>
+            <button type="button" data-qty-plus>+</button>
+          </div>
+          <div>$140</div>
+        </div>
+
+        <div class="total-box" style="margin-top: 1rem;">
+          Total: <span data-total>$0</span>
+        </div>
+
+        <!-- CHECKOUT BUTTON -->
+        <button class="btn" onclick="checkout()" style="margin-top:1rem;">
+          Checkout
+        </button>
+
+      </div>
+    </section>
+
+    <!-- TICKET RESULT -->
+    <section id="ticketSection" style="display:none; margin-top:2rem;">
+      <div class="panel">
+        <h2>Your Ticket</h2>
+        <p id="ticketName"></p>
+        <p id="ticketEvent"></p>
+        <p id="ticketDate"></p>
+        <canvas id="qrcode"></canvas>
+      </div>
+    </section>
+
+  </main> 
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p class="pill">Nexus Events · Tickets Desk</p>
+      <p>© <span data-year></span> Nexus Events. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
