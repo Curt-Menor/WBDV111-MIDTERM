@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" data-page="login">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HealthSync Login</title>
+
+  <link rel="stylesheet" href="portal.css" />
+</head>
+
+<body data-page="login">
+
+  <main class="login-wrapper">
+
+    <section class="login-box">
+
+      <h1 class="app-title">HealthSync Portal</h1>
+      <p class="app-subtitle">Secure Access to Your Medical Dashboard</p>
+
+      <p id="currentSession" class="session-info" hidden></p>
+
+      <button id="continueSession" class="primary-button" hidden>
+        Continue Session
+      </button>
+
+      <!-- LOGIN FORM -->
+      <form id="loginForm" class="form">
+
+        <div class="field">
+          <label>Username</label>
+          <input id="username" type="text" autocomplete="off" />
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input id="password" type="password" autocomplete="off" />
+        </div>
+
+        <p id="loginStatus" class="login-status" data-state=""></p>
+
+        <button class="primary-button full" type="submit">
+          Log In
+        </button>
+
+        <a href="index.html" class="return-link">← Return to Home</a>
+      </form>
+
+    </section>
+
+    <!-- ACCOUNT CARDS -->
+    <section class="account-section">
+      <h2>Demo Accounts</h2>
+      <p class="account-note">Click “Use” to auto-fill login details.</p>
+
+      <div id="accountGrid" class="account-grid"></div>
+    </section>
+
+  </main>
+
+  <script src="wizard.js"></script>
+  <script src="state.js"></script>
+  <script src="auth.js"></script>
+
+</body>
+</html>
